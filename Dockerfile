@@ -13,6 +13,10 @@ RUN ./dkp-env.sh dkp-pacman --noconfirm -S deko3d libnx switch-examples devkit-e
 RUN adduser --help
 RUN adduser --disabled-password --gecos "" dkp
 RUN echo "dkp ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "" >> /opt/devkitpro/pacman/etc/pacman.conf
+RUN echo "[comp_hack]" >> /opt/devkitpro/pacman/etc/pacman.conf
+RUN echo "Server = https://compomega.github.io/devkitPro-repo/any" >> /opt/devkitpro/pacman/etc/pacman.conf
+
 COPY build.sh /work
 
 ENTRYPOINT ["/work/build.sh"]
